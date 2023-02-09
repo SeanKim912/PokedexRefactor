@@ -12,8 +12,8 @@ class Pokemon(db.Model):
     name = db.Column(db.String, nullable=False, unique=True)
     type = db.Column(db.Enum, nullable=False)
     moves = db.Column(db.String, nullable=False)
-    encounterRate = db.Column(db.Decimal)
-    catchRate = db.Column(db.Decimal)
+    encounterRate = db.Column(db.Float)
+    catchRate = db.Column(db.Float)
     captured = db.Column(db.Boolean)
 
     pokemontypes = db.relationship("PokemonType", back_populates="pokemon")
@@ -26,7 +26,7 @@ class Item(db.Model):
     imageUrl = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False, unique=True)
     price = db.Column(db.Integer, nullable=False)
-    pokemonId = db.Column(db.Integer, nullable=False)
+    pokemonId = db.Column(db.Integer, db.ForeignKey("pokemon.id"), nullable=False)
 
     pokemon = db.relationship("Pokemon", back_populates="items")
 
