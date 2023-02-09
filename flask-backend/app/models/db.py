@@ -17,6 +17,7 @@ class Pokemon(db.Model):
     captured = db.Column(db.Boolean)
 
     pokemontypes = db.relationship("PokemonType", back_populates="pokemon")
+    items = db.relationship("Item", back_populates="pokemon")
 
 class Item(db.Model):
     __tablename__ = "items"
@@ -26,6 +27,8 @@ class Item(db.Model):
     name = db.Column(db.String, nullable=False, unique=True)
     price = db.Column(db.Integer, nullable=False)
     pokemonId = db.Column(db.Integer, nullable=False)
+
+    pokemon = db.relationship("Pokemon", back_populates="items")
 
 class PokemonType(db.Model):
     __tablename__ = "pokemontypes"

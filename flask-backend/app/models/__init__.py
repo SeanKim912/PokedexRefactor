@@ -1,1 +1,1 @@
-from .db import db, Pokemon, Item
+from .db import db, Pokemon, Item, PokemonType
