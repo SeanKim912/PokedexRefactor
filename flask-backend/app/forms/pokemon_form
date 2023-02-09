@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtfroms import IntegerField, StringField, SelectField, DecimalField, BooleanField, URLField
 from wtforms.validators import DataRequired, NumberRange, Length
+import json
 
 types = ["fire",
   "electric",
@@ -22,10 +23,22 @@ types = ["fire",
 UNKNOWN_IMG_URL = "/images/unknown.png"
 
 def get_image(self):
-    captured = self.getDataValue("captured")
+    captured = self.captured
     if(captured):
-        return self.getDataValue("imageUrl")
+        return self.imageUrl
     return UNKNOWN_IMG_URL
+
+@property
+def get_moves(self):
+    rawValue = self.moves
+    if(rawValue):
+        json.dumps(rawValue)
+    return None
+
+@get_moves.setter
+def get_moves(self, value):
+    self.moves = json.dumps(value)
+
 
 
 class NewPokemonForm(FlaskForm):
@@ -35,7 +48,7 @@ class NewPokemonForm(FlaskForm):
     imageUrl = URLField("Image", validators=[DataRequired(), get_image])
     name = StringField("Name", validators=[DataRequired(), Length(min=3, max=255, message="must be between 3 and 255 characters")])
     type = SelectField("Type", choices=types)
-    moves = StringField("Moves", validators=[DataRequired()])
+    moves = StringField("Moves", validators=[DataRequired(), get_moves])
     encounterRate = DecimalField("Encounter Rate", validators=[NumberRange(min=0, max=100, message=None)])
     catchRate = DecimalField("Catch Rate", validators=[NumberRange(min=0, max=100, message=None)])
     captured = BooleanField("Captured?")
