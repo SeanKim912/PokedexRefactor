@@ -36,6 +36,6 @@ def get_one_pokemon(id):
     pokemon = Pokemon.query.get(id)
     return pokemon.to_dict()
 
-@app.route("/api/pokemon" methods=["POST"])
+@app.route("/api/pokemon", methods=["POST"])
 def create_pokemon():
    pass
