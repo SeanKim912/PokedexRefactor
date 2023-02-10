@@ -10,7 +10,7 @@ class Pokemon(db.Model):
     defense = db.Column(db.Integer, nullable=False)
     imageUrl = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False, unique=True)
-    type = db.Column(db.Enum, nullable=False)
+    type = db.Column(db.String, nullable=False)
     moves = db.Column(db.String, nullable=False)
     encounterRate = db.Column(db.Float)
     catchRate = db.Column(db.Float)
@@ -18,6 +18,20 @@ class Pokemon(db.Model):
 
     pokemontypes = db.relationship("PokemonType", back_populates="pokemon")
     items = db.relationship("Item", back_populates="pokemon")
+
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "attack" : self.attack,
+            "defense" : self.defense,
+            "imageUrl" : self.imageUrl,
+            "name" : self.name,
+            "type" : self.type,
+            "moves": self.moves.split(", "),
+            "encounteRate" : self.encounterRate,
+            "catchRate" : self.catchRate,
+            "captured" : self.captured
+        }
 
 class Item(db.Model):
     __tablename__ = "items"

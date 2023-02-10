@@ -1,10 +1,13 @@
-from app.models.db import db, Pokemon, Item
+from app.models import db, Pokemon, Item
 from app import app
 
 with app.app_context():
 
-    db.drop_all()
-    print("All tables dropped!")
+    # db.drop_all()
+    # print("All tables dropped!")
+
+    db.create_all()
+    print("All tables created")
 
     pokemon1 = Pokemon(
         number = 1,
@@ -13,10 +16,7 @@ with app.app_context():
         attack = 49,
         defense = 49,
         type = 'grass',
-        moves = [
-            'tackle',
-            'vine whip'
-        ],
+        moves = 'tackle, vine whip',
         captured = True)
 
     pokemon2 = Pokemon(
@@ -26,11 +26,7 @@ with app.app_context():
         attack = 62,
         defense = 63,
         type = 'grass',
-        moves = [
-            'tackle',
-            'vine whip',
-            'razor leaf'
-        ],
+        moves = 'tackle, vine whip, razor leaf',
         captured = True)
 
     pokemon3 = Pokemon(
@@ -40,11 +36,7 @@ with app.app_context():
         attack = 82,
         defense = 83,
         type = 'grass',
-        moves = [
-            'tackle',
-            'vine whip',
-            'razor leaf'
-        ],
+        moves = 'tackle, vine whip, razor leaf',
         captured = True)
 
     pokemon4 = Pokemon(
@@ -54,11 +46,7 @@ with app.app_context():
         attack = 52,
         defense = 43,
         type = 'fire',
-        moves = [
-            'scratch',
-            'ember',
-            'metal claw'
-        ],
+        moves = 'scratch, ember, metal claw',
         captured = True)
 
     pokemon5 = Pokemon(
@@ -68,12 +56,7 @@ with app.app_context():
         attack = 64,
         defense = 58,
         type = 'fire',
-        moves = [
-            'scratch',
-            'ember',
-            'metal claw',
-            'flamethrower'
-        ],
+        moves = 'scratch, ember, metal claw, flamethrower',
         captured = True)
 
     pokemon6 = Pokemon(
@@ -83,12 +66,7 @@ with app.app_context():
         attack = 84,
         defense = 78,
         type = 'fire',
-        moves = [
-            'flamethrower',
-            'wing attack',
-            'slash',
-            'metal claw'
-        ],
+        moves = 'flamethrower, wing attack, slash, metal claw',
         captured = True)
 
     pokemon7 = Pokemon(
@@ -98,11 +76,7 @@ with app.app_context():
         attack = 48,
         defense = 65,
         type = 'water',
-        moves = [
-            'tackle',
-            'bubble',
-            'water gun'
-        ],
+        moves = 'tackle, bubble, water gun',
         captured = True)
 
     pokemon8 = Pokemon(
@@ -112,12 +86,7 @@ with app.app_context():
         attack = 63,
         defense = 80,
         type = 'water',
-        moves = [
-            'tackle',
-            'bubble',
-            'water gun',
-            'bite'
-        ],
+        moves = 'tackle, bubble, water gun, bite',
         captured = True)
 
     pokemon9 = Pokemon(
@@ -127,12 +96,7 @@ with app.app_context():
         attack = 83,
         defense = 100,
         type = 'water',
-        moves = [
-            'hydro pump',
-            'bubble',
-            'water gun',
-            'bite'
-        ],
+        moves = 'hydro pump, bubble, water gun, bite',
         captured = True)
 
     pokemon10 = Pokemon(
@@ -142,9 +106,7 @@ with app.app_context():
         attack = 30,
         defense = 35,
         type = 'bug',
-        moves = [
-            'tackle'
-        ],
+        moves = 'tackle',
         captured = True)
 
     all_pokemon = [pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6, pokemon7, pokemon8, pokemon9, pokemon10]

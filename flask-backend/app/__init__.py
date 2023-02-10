@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from .config import Configuration
 from .forms.item_form import ItemForm
 from .forms.pokemon_form import NewPokemonForm
-from .models.db import db, Pokemon, PokemonType, Item
+from .models import db, Pokemon, PokemonType, Item
 import os
 
 app = Flask(__name__)
@@ -25,3 +25,17 @@ def inject_csrf_token(response):
             'FLASK_ENV') == 'production' else None,
         httponly=True)
     return response
+
+@app.route("/api/pokemon")
+def home():
+    pokemon = Pokemon.query.all()
+    return [poke.to_dict() for poke in pokemon]
+
+@app.route("/api/pokemon/<int:id>")
+def get_one_pokemon(id):
+    pokemon = Pokemon.query.get(id)
+    return pokemon.to_dict()
+
+@app.route("/api/pokemon" methods=["POST"])
+def create_pokemon():
+   pass

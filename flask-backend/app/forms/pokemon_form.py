@@ -52,4 +52,3 @@ class NewPokemonForm(FlaskForm):
     encounterRate = DecimalField("Encounter Rate", validators=[NumberRange(min=0, max=100, message=None)])
     catchRate = DecimalField("Catch Rate", validators=[NumberRange(min=0, max=100, message=None)])
     captured = BooleanField("Captured?")
-    
